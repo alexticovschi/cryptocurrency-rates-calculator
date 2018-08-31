@@ -17,8 +17,8 @@ form.addEventListener('submit', (event) => {
 
     // Validate that the selected value is not an empty string
     if(selectedCurrency === '' || selectedCryptocurrency === '') {
-        // display an error
-        console.log('error');
+        // Display an error to user
+        ui.displayMessage('All fields are mandatory', 'deep-orange darken-4 card-panel center')
     } else {
         console.log('success');
     }
