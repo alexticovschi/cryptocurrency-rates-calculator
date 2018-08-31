@@ -66,18 +66,41 @@ class UI {
         // Read the result from the object
         const value = result[currencyName];
 
+        // Remove the previous result
+        const prevResult = document.querySelector('#result > div');
+        if(prevResult) prevResult.remove();
+
+
         let HTMLTemplate = '';
 
         HTMLTemplate += `
             <div class="card cyan darken-3">
                 <div class="card-content white-text">
                     <span class="card-title">Result</span>
-                    <p>Price of ${result.name} in  ${currency} : ${currencySymbol}${value} </p>
+                    <p>Price of ${result.name} in  ${currency} : ${currencySymbol}${value}</p>
+                    <p>Last Hour: ${result.percent_change_1h}%</p>
+                    <p>Last Day: ${result.percent_change_24h}%</p>
+                    <p>Last 7 Days: ${result.percent_change_7d}%</p>
                 </div>
             </div>
         `;
 
-        const divResult = document.querySelector('#result');
-        divResult.innerHTML = HTMLTemplate;
+        this.showSpinner();
+
+        // Display the result and remove the spinner after 3 seconds
+        setTimeout(() => {
+            const divResult = document.querySelector('#result');
+            divResult.innerHTML = HTMLTemplate;
+
+            // Hide spinner
+            document.querySelector('.spinner img').remove();
+        }, 2000);
+    }
+
+    // display spinner
+    showSpinner() {
+        const spinnerGIF = document.createElement('img');
+        spinnerGIF.src = 'img/spinner.gif';
+        document.querySelector('.spinner').appendChild(spinnerGIF);
     }
 }
