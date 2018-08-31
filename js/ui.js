@@ -42,4 +42,9 @@ class UI {
         // Remove the message
         setTimeout(() => document.querySelector('.messages div').remove(), 3000);
     }
+
+    // Display the result of the evaluation / rate
+    displayResult(result) {
+        console.log(result);
+    }
 }
