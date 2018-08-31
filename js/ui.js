@@ -44,7 +44,40 @@ class UI {
     }
 
     // Display the result of the evaluation / rate
-    displayResult(result) {
-        console.log(result);
+    displayResult(result, currency) {
+
+        // Get currency
+        let currencyName;
+        currencyName = `price_${currency.toLowerCase()}`;
+
+        const printCurrencySymbol = (currency) => {
+            switch(currency) {
+                case 'USD':
+                    return '&#36;';
+                case 'GBP':
+                    return '&#163;';
+                case 'EUR':
+                    return '&#8364;';
+            } 
+        }
+
+        const currencySymbol = printCurrencySymbol(currency);
+
+        // Read the result from the object
+        const value = result[currencyName];
+
+        let HTMLTemplate = '';
+
+        HTMLTemplate += `
+            <div class="card cyan darken-3">
+                <div class="card-content white-text">
+                    <span class="card-title">Result</span>
+                    <p>Price of ${result.name} in  ${currency} : ${currencySymbol}${value} </p>
+                </div>
+            </div>
+        `;
+
+        const divResult = document.querySelector('#result');
+        divResult.innerHTML = HTMLTemplate;
     }
 }
