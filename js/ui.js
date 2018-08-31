@@ -8,8 +8,8 @@ class UI {
     // Display the <option> for the form
     displayCryptoCurrencies() {
         cryptoAPI.getCryptoCurrenciesList()
-            .then(res => {
-                const cryptoCurrencies = res.cryptoCurrencies.data;
+            .then(data => {
+                const cryptoCurrencies = data.cryptoCurrencies;
                 
                 // Build the <select> from the REST API
                 const select = document.getElementById('cryptocurrency');
